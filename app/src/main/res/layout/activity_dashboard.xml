@@ -34,6 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_dashboard"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
@@ -100,5 +101,74 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_my_vocab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/txt_my_vocab"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/cl_dashboard"
+        app:layout_constraintTop_toBottomOf="@+id/cl_dashboard" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_trash"
+        app:layout_constraintEnd_toEndOf="@id/cl_dashboard"
+        app:layout_constraintTop_toBottomOf="@id/cl_dashboard" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_add"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_plus"
+        app:layout_constraintEnd_toStartOf="@id/iv_delete"
+        app:layout_constraintTop_toBottomOf="@id/cl_dashboard" />
+
+    <TextView
+        android:id="@+id/button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_button_start"
+        android:backgroundTint="@color/colorRedButton"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="5dp"
+        android:text="@string/txt_cancel"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/cl_dashboard"
+        app:layout_constraintTop_toBottomOf="@id/cl_dashboard" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/iv_delete"
+        app:layout_constraintStart_toStartOf="@id/tv_my_vocab"
+        app:layout_constraintTop_toBottomOf="@+id/tv_my_vocab" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_vocab"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/iv_delete"
+        app:layout_constraintStart_toStartOf="@id/tv_my_vocab"
+        app:layout_constraintTop_toBottomOf="@id/rv_category" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
