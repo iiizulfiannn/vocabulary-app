@@ -9,4 +9,5 @@
     <string name="txt_available_value">%1$d/100</string>
     <string name="txt_my_vocab">My Vocab</string>
     <string name="txt_cancel">Cancel</string>
+    <string name="txt_all_category">All Category</string>
 </resources>

@@ -7,4 +7,5 @@
     <color name="colorDashboard">#8D79FF</color>
     <color name="colorTrack">#C2CAF2</color>
     <color name="colorRedButton">#C10220</color>
+    <color name="colorCardBackground">#EDEDED</color>
 </resources>

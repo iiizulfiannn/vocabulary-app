@@ -149,7 +149,6 @@
         app:layout_constraintEnd_toEndOf="@id/cl_dashboard"
         app:layout_constraintTop_toBottomOf="@id/cl_dashboard" />
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_category"
         android:layout_width="0dp"
