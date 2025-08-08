@@ -15,24 +15,90 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="center|start"
-        android:text="@string/txt_greeting"
+        android:text="Hi, Susan!"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/iv_user"
         app:layout_constraintBottom_toBottomOf="@id/iv_user"
         app:layout_constraintEnd_toEndOf="@id/iv_user"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_user" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_user"
         android:layout_width="35dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_dashboard"
+        app:layout_constraintEnd_toEndOf="@+id/iv_user"
+        app:layout_constraintStart_toStartOf="@+id/tv_greeting"
+        app:layout_constraintTop_toBottomOf="@+id/tv_greeting">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/pb_achieved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:indeterminate="false"
+            android:progress="15"
+            app:indicatorColor="@color/white"
+            app:indicatorSize="70dp"
+            app:indicatorTrackGapSize="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:trackColor="@color/colorTrack"
+            app:trackThickness="8dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_achieved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/pb_achieved"
+            app:layout_constraintEnd_toEndOf="@id/pb_achieved"
+            app:layout_constraintStart_toStartOf="@id/pb_achieved"
+            app:layout_constraintTop_toTopOf="@id/pb_achieved"
+            tools:text="15%" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_available_vocab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/txt_available_vocabulary"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/pb_achieved"
+            app:layout_constraintTop_toTopOf="@id/pb_achieved" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_available_vocab_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:text="@string/txt_available_value"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/pb_achieved"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_available_vocab" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

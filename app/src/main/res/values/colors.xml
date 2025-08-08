@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorBackgroundEditText">#F3F4F6</color>
     <color name="colorBackgroundStartButton">#6D56F2</color>
+    <color name="colorDashboard">#8D79FF</color>
+    <color name="colorTrack">#C2CAF2</color>
 </resources>
