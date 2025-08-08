@@ -8,4 +8,8 @@
     <color name="colorTrack">#C2CAF2</color>
     <color name="colorRedButton">#C10220</color>
     <color name="colorCardBackground">#EDEDED</color>
+    <color name="green">#51DC2E</color>
+    <color name="red">#DC572E</color>
+    <color name="yellow">#D6B709</color>
+    <color name="purple">#9A96FF</color>
 </resources>
