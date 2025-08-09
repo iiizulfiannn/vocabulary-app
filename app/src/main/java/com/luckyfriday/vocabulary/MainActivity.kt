@@ -1,5 +1,6 @@
 package com.luckyfriday.vocabulary
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         val savedUsername = sharedPreferences.getString("USERNAME", null)
         if (savedUsername != null) {
             // direct to main app
+            navigateToDashboard(savedUsername)
         } else {
             showOnboard()
         }
@@ -49,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         bindingMain.btnStart.setOnClickListener {
             val username = bindingMain.etNameOnboarding.text.toString()
             saveName(username)
+            navigateToDashboard(username)
         }
     }
 
@@ -60,5 +63,11 @@ class MainActivity : AppCompatActivity() {
         sharedPreferences.edit {
             putString("USERNAME", username)
         }
+    }
+
+    private fun navigateToDashboard(username: String) {
+        val intent = Intent(this, DashboardActivity::class.java)
+        intent.putExtra("USERNAME", username)
+        startActivity(intent)
     }
 }
