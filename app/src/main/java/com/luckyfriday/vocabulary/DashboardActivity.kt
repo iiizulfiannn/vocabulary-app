@@ -1,5 +1,6 @@
 package com.luckyfriday.vocabulary
 
+import android.app.ComponentCaller
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -24,6 +25,8 @@ class DashboardActivity : AppCompatActivity() {
     private var selectedListState = ListWordState.NORMAL
     private var selectedCategory = WordCategory.ALL_CATEGORY
     private val sqlDbHandler = SqlDbHandler(this)
+    private var progress = 0
+    private var maxVocab = 100
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,9 +44,22 @@ class DashboardActivity : AppCompatActivity() {
         buttonDeleteAdd()
         setCategoryList()
         setVocabList()
+        setProgressAndRefreshed()
 
         bindingDashboard.ivAdd.setOnClickListener {
             navigateToNewVocab()
+        }
+
+        bindingDashboard.ivDelete.setOnClickListener {
+            buttonCancel()
+            selectedListState = ListWordState.REMOVED
+            adapterVocab.setListState(selectedListState)
+        }
+
+        bindingDashboard.btnCancel.setOnClickListener {
+            buttonDeleteAdd()
+            selectedListState = ListWordState.NORMAL
+            adapterVocab.setListState(selectedListState)
         }
     }
 
@@ -76,11 +92,11 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun setVocabList() {
-        adapterVocab = VocabAdapter(sqlDbHandler.getVocab(), selectedListState) {
-            positionTobeRemoved ->
-            removedAndRefreshed(positionTobeRemoved)
+        adapterVocab =
+            VocabAdapter(sqlDbHandler.getVocab(), selectedListState) { positionTobeRemoved ->
+                removedAndRefreshed(positionTobeRemoved)
 
-        }
+            }
         bindingDashboard.rvVocab.apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = adapterVocab
@@ -90,6 +106,7 @@ class DashboardActivity : AppCompatActivity() {
     private fun removedAndRefreshed(position: Int) {
         sqlDbHandler.deleteVocab(position)
         adapterVocab.refreshList(sqlDbHandler.getVocab())
+        setProgressAndRefreshed()
 
         if (sqlDbHandler.getVocab().isNotEmpty()) {
             buttonCancel()
@@ -102,12 +119,37 @@ class DashboardActivity : AppCompatActivity() {
     private fun buttonCancel() {
         bindingDashboard.btnCancel.isVisible = true
         bindingDashboard.ivDelete.isVisible = false
-        bindingDashboard.ivAdd.isVisible = true
+        bindingDashboard.ivAdd.isVisible = false
+        selectedListState = ListWordState.NORMAL
+        setProgressAndRefreshed()
     }
 
     private fun buttonDeleteAdd() {
         bindingDashboard.btnCancel.isVisible = false
         bindingDashboard.ivAdd.isVisible = true
         bindingDashboard.ivDelete.isVisible = sqlDbHandler.getVocab().isNotEmpty()
+        setProgressAndRefreshed()
+    }
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?,
+        caller: ComponentCaller
+    ) {
+        super.onActivityResult(requestCode, resultCode, data, caller)
+        if (requestCode == 123) {
+            adapterVocab.refreshList(sqlDbHandler.getVocab())
+            buttonDeleteAdd()
+        }
+    }
+
+    private fun setProgressAndRefreshed() {
+        progress = (sqlDbHandler.getVocab().size * 100) / maxVocab
+        bindingDashboard.tvTitleAvailableVocabValue.text = getString(R.string.txt_available_value, progress)
+        bindingDashboard.tvAchieved.text = "$progress %"
+        bindingDashboard.pbAchieved.progress = progress
+//        bindingDashboard.ivAdd.isVisible =
+//            progress < 100 && selectedListState == ListWordState.NORMAL
     }
 }
