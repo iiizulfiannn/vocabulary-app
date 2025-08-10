@@ -1,6 +1,7 @@
-package com.luckyfriday.vocabulary
+package com.luckyfriday.vocabulary.model
 
 import androidx.annotation.ColorRes
+import com.luckyfriday.vocabulary.R
 
 enum class WordCategory(val title: String, @ColorRes val color: Int) {
     ALL_CATEGORY("All Categories", R.color.black),
